@@ -1,0 +1,10 @@
+{
+  "name": "SwaggerTypeGenerator",
+  "version": "0.0.0",
+  "description": "SwaggerTypeGenerator",
+  "main": "app.js",
+  "author": {
+    "name": "Dick",
+    "email": ""
+  }
+}
