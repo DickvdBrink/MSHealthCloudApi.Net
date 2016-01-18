@@ -1,0 +1,2475 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "v1",
+		"title": "Microsoft Health Cloud API V1"
+	},
+	"host": "api.microsofthealth.net",
+	"schemes": ["https"],
+	"paths": {
+		"/v1/me/Activities": {
+			"get": {
+				"tags": ["Activities"],
+				"summary": "Get a collection of activities",
+				"operationId": "Activities_Get",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "activityIds",
+					"in": "query",
+					"description": "The comma-separated list of activity ids to return.  Defaults to all activities.",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "activityTypes",
+					"in": "query",
+					"description": "The comma-separated list of activity types to return.  Defaults to all activity types.",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "activityIncludes",
+					"in": "query",
+					"description": "The comma-separated list of additional properties to return: Details, MinuteSummaries, MapPoints.  Defaults to none.",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "deviceIds",
+					"in": "query",
+					"description": "Filters the set of returned activities based on the comma-separated list of device ids provided.  Defaults to no filter.",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "startTime",
+					"in": "query",
+					"description": "Filters the set of returned activities to those starting after the specified ISO 8601 formatted start time, inclusive.",
+					"required": false,
+					"type": "string",
+					"format": "date-time"
+				},
+				{
+					"name": "endTime",
+					"in": "query",
+					"description": "Filters the set of returned activities to those starting before the specified ISO 8601 formatted end time, exclusive.  Defaults to the current time in UTC.",
+					"required": false,
+					"type": "string",
+					"format": "date-time"
+				},
+				{
+					"name": "splitDistanceType",
+					"in": "query",
+					"description": "The length of splits used in each activity.  Defaults to Mile.",
+					"required": false,
+					"type": "string",
+					"enum": ["None",
+					"Mile",
+					"Kilometer"]
+				},
+				{
+					"name": "maxPageSize",
+					"in": "query",
+					"description": "The maximum number of entries to return per page. Defaults to 1000.",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/ActivitiesResponse"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/v1/me/Activities/{activityId}": {
+			"get": {
+				"tags": ["Activities"],
+				"summary": "Get the details of an activity by activity id.",
+				"operationId": "Activities_GetById",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "activityId",
+					"in": "path",
+					"description": "The id of the activity to get.",
+					"required": true,
+					"type": "string"
+				},
+				{
+					"name": "activityIncludes",
+					"in": "query",
+					"description": "The comma-separated list of additional properties to return: Details, MinuteSummaries, MapPoints.  Defaults to none.",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/ActivitiesResponse"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/v1/me/Devices": {
+			"get": {
+				"tags": ["Devices"],
+				"summary": "Get the details about the devices associated with this user's Microsoft Health profile.",
+				"operationId": "Devices_Get",
+				"consumes": [],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/DeviceProfile"
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/v1/me/Devices/{deviceId}": {
+			"get": {
+				"tags": ["Devices"],
+				"summary": "Get the details about the requested device associated with this user's Microsoft Health profile.",
+				"operationId": "Device_Get",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "deviceId",
+					"in": "path",
+					"description": "The id of the device",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/DeviceProfile"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/v1/me/Profile": {
+			"get": {
+				"tags": ["Profile"],
+				"summary": "Get the details about this user from their Microsoft Health profile.",
+				"operationId": "Profile_Get",
+				"consumes": [],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/UserProfile"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/v1/me/Summaries/{period}": {
+			"get": {
+				"tags": ["Summaries"],
+				"summary": "Get the summary data for this user by date range",
+				"operationId": "Summaries_Get",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "period",
+					"in": "path",
+					"description": "The time period for each summary.",
+					"required": true,
+					"type": "string",
+					"enum": ["Hourly",
+					"Daily"]
+				},
+				{
+					"name": "startTime",
+					"in": "query",
+					"description": "The ISO 8601 formatted start time of the summaries, inclusive.",
+					"required": false,
+					"type": "string",
+					"format": "date-time"
+				},
+				{
+					"name": "endTime",
+					"in": "query",
+					"description": "The ISO 8601 formatted end time of the summaries, exclusive.  Defaults to the current time in UTC.",
+					"required": false,
+					"type": "string",
+					"format": "date-time"
+				},
+				{
+					"name": "deviceIds",
+					"in": "query",
+					"description": "The comma-separated list of device ids that generated the data.  Defaults to the aggregation of all devices.  Only a single device id is allowed for Developer Preview.",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "maxPageSize",
+					"in": "query",
+					"description": "The maximum number of entries to return per page.  Defaults to 48 for hourly and 31 for daily.",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SummaryResponse"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"definitions": {
+		"Object": {
+			"type": "object",
+			"properties": {
+				
+			},
+			"id": "Object"
+		},
+		"ActivitiesResponse": {
+			"description": "The activity collection response.",
+			"type": "object",
+			"properties": {
+				"bikeActivities": {
+					"description": "The collection of bike activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/BikeActivity"
+					}
+				},
+				"freePlayActivities": {
+					"description": "The collection of free play activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FreePlayActivity"
+					}
+				},
+				"golfActivities": {
+					"description": "The collection of golf activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GolfActivity"
+					}
+				},
+				"guidedWorkoutActivities": {
+					"description": "The collection of guided workout activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GuidedWorkoutActivity"
+					}
+				},
+				"runActivities": {
+					"description": "The collection of run activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/RunActivity"
+					}
+				},
+				"sleepActivities": {
+					"description": "The collection of sleep activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SleepActivity"
+					}
+				},
+				"nextPage": {
+					"description": "The URI for the next page of data",
+					"type": "string"
+				},
+				"itemCount": {
+					"format": "int32",
+					"description": "The number of items returned",
+					"type": "integer"
+				}
+			},
+			"id": "ActivitiesResponse"
+		},
+		"BikeActivity": {
+			"description": "Bike specific data for a biking activity",
+			"type": "object",
+			"properties": {
+				"activityType": {
+					"description": "The type of this activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string",
+					"readOnly": true
+				},
+				"activitySegments": {
+					"description": "The segments associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/BikeSegment"
+					}
+				},
+				"performanceSummary": {
+					"$ref": "#/definitions/PerformanceSummary",
+					"description": "The performance summary for the activity"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the activity"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the activity",
+					"type": "string"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the activity",
+					"type": "integer"
+				},
+				"mapPoints": {
+					"description": "The map points for the activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MapPoint"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "ExerciseActivity"
+		},
+		"FreePlayActivity": {
+			"description": "Free Play specific data for a Free Play activity",
+			"type": "object",
+			"properties": {
+				"activityType": {
+					"description": "The type of this activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string",
+					"readOnly": true
+				},
+				"activitySegments": {
+					"description": "The segments associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FreePlaySegment"
+					}
+				},
+				"performanceSummary": {
+					"$ref": "#/definitions/PerformanceSummary",
+					"description": "The performance summary for the activity"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the activity"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the activity",
+					"type": "string"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the activity",
+					"type": "integer"
+				},
+				"mapPoints": {
+					"description": "The map points for the activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MapPoint"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "ExerciseActivity"
+		},
+		"GolfActivity": {
+			"description": "Golf specific data for a golfing activity",
+			"type": "object",
+			"properties": {
+				"activityType": {
+					"description": "The type of this activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string",
+					"readOnly": true
+				},
+				"activitySegments": {
+					"description": "The segments associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GolfHoleSegment"
+					}
+				},
+				"totalStepCount": {
+					"format": "int32",
+					"description": "The total number of steps a user took during the activity",
+					"type": "integer"
+				},
+				"totalDistanceWalked": {
+					"format": "int32",
+					"description": "The total distance a user walked during the activity",
+					"type": "integer"
+				},
+				"parOrBetterCount": {
+					"format": "int32",
+					"description": "The number of holes played where the user scored par or better during the activity",
+					"type": "integer"
+				},
+				"longestDriveDistance": {
+					"format": "int32",
+					"description": "The distance of the longest drive hit by the user during the activity",
+					"type": "integer"
+				},
+				"longestStrokeDistance": {
+					"format": "int32",
+					"description": "The distance of the longest stroke hit by the user during the activity",
+					"type": "integer"
+				},
+				"childActivities": {
+					"description": "The list of child activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Activity"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "CompositeActivity"
+		},
+		"GuidedWorkoutActivity": {
+			"description": "Guided Workout Exercise specific data for a Guided  Exercise activity",
+			"type": "object",
+			"properties": {
+				"activityType": {
+					"description": "The type of this activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string",
+					"readOnly": true
+				},
+				"activitySegments": {
+					"description": "The segments associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GuidedWorkoutCircuitSegment"
+					}
+				},
+				"roundsPerformed": {
+					"format": "int32",
+					"description": "A round is the repetition of a circuit of exercises. RoundsPerformed counts the number\r\n            of complete circuit rounds actually performed. Partial circuits are not counted",
+					"type": "integer"
+				},
+				"repetitionsPerformed": {
+					"format": "int32",
+					"description": "The number of exercise repetitions actually performed",
+					"type": "integer"
+				},
+				"workoutPlanId": {
+					"description": "The identifier of the workout plan",
+					"type": "string"
+				},
+				"performanceSummary": {
+					"$ref": "#/definitions/PerformanceSummary",
+					"description": "The performance summary for the activity"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the activity"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the activity",
+					"type": "string"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the activity",
+					"type": "integer"
+				},
+				"mapPoints": {
+					"description": "The map points for the activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MapPoint"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "ExerciseActivity"
+		},
+		"RunActivity": {
+			"description": "Run specific data for a Run activity",
+			"type": "object",
+			"properties": {
+				"activityType": {
+					"description": "The type of this activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string",
+					"readOnly": true
+				},
+				"activitySegments": {
+					"description": "The segments associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/RunSegment"
+					}
+				},
+				"performanceSummary": {
+					"$ref": "#/definitions/PerformanceSummary",
+					"description": "The performance summary for the activity"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the activity"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the activity",
+					"type": "string"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the activity",
+					"type": "integer"
+				},
+				"mapPoints": {
+					"description": "The map points for the activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MapPoint"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "ExerciseActivity"
+		},
+		"SleepActivity": {
+			"description": "Sleep specific data for a sleep activity",
+			"type": "object",
+			"properties": {
+				"activityType": {
+					"description": "The type of this activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string",
+					"readOnly": true
+				},
+				"activitySegments": {
+					"description": "The segments associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SleepSegment"
+					}
+				},
+				"awakeDuration": {
+					"description": "The ISO 8601 formatted length of time the user was awake during the activity",
+					"type": "string"
+				},
+				"sleepDuration": {
+					"description": "The ISO 8601 formatted total length of time the user was asleep during the activity",
+					"type": "string"
+				},
+				"numberOfWakeups": {
+					"format": "int32",
+					"description": "The number of times the user woke up during the activity",
+					"type": "integer"
+				},
+				"fallAsleepDuration": {
+					"description": "The ISO 8601 formatted length of time it took the user to fall asleep",
+					"type": "string"
+				},
+				"sleepEfficiencyPercentage": {
+					"format": "int32",
+					"description": "The ratio of sleep duration to total duration of the activity",
+					"type": "integer"
+				},
+				"totalRestlessSleepDuration": {
+					"description": "The ISO 8601 formatted length of time the user was in a restless sleep state",
+					"type": "string"
+				},
+				"totalRestfulSleepDuration": {
+					"description": "The ISO 8601 formatted length of time the user was in a restful sleep state",
+					"type": "string"
+				},
+				"restingHeartRate": {
+					"format": "int32",
+					"description": "The resting heart rate during the activity",
+					"type": "integer"
+				},
+				"fallAsleepTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the user fell asleep",
+					"type": "string"
+				},
+				"wakeupTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the user woke up",
+					"type": "string"
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "Activity"
+		},
+		"BikeSegment": {
+			"description": "ActivitySegment of a segment of biking",
+			"type": "object",
+			"properties": {
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the segment"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the segment",
+					"type": "string"
+				},
+				"heartRateZones": {
+					"$ref": "#/definitions/HeartRateZones",
+					"description": "The mapping of the amount of time spent in a given heart rate zone during the segment"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the segment",
+					"type": "integer"
+				},
+				"segmentId": {
+					"format": "int64",
+					"description": "The unique identifier of the segment",
+					"type": "integer"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the segment",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the segment",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the segment"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the segment"
+				},
+				"segmentType": {
+					"description": "The segment type",
+					"enum": ["Unknown",
+					"Run",
+					"FreePlay",
+					"Doze",
+					"Sleep",
+					"Snooze",
+					"Awake",
+					"GuidedWorkout",
+					"Bike",
+					"Pause",
+					"Resume",
+					"DistanceBasedInterval",
+					"TimeBasedInterval",
+					"GolfHole",
+					"GolfShot",
+					"NotWorn"],
+					"type": "string"
+				}
+			},
+			"id": "BikeSegment"
+		},
+		"PerformanceSummary": {
+			"description": "Summary of the Performance Metrics for an Exercise",
+			"type": "object",
+			"properties": {
+				"finishHeartRate": {
+					"format": "int32",
+					"description": "The heart rate when the user finished the exercise",
+					"type": "integer"
+				},
+				"recoveryHeartRateAt1Minute": {
+					"format": "int32",
+					"description": "The heart rate one minute after the user finished the exercise",
+					"type": "integer"
+				},
+				"recoveryHeartRateAt2Minutes": {
+					"format": "int32",
+					"description": "The heart rate two minutes after the user finished the exercise",
+					"type": "integer"
+				},
+				"heartRateZones": {
+					"$ref": "#/definitions/HeartRateZones",
+					"description": "The breakdown of the heart rate zones during the exercise"
+				}
+			},
+			"id": "PerformanceSummary"
+		},
+		"DistanceSummary": {
+			"description": "Distance Related Summary Information",
+			"type": "object",
+			"properties": {
+				"period": {
+					"description": "The length of the time bucket for which the summary is calculated",
+					"enum": ["Unknown",
+					"Activity",
+					"Minute",
+					"QuarterHourly",
+					"HalfHourly",
+					"Hourly",
+					"Daily",
+					"Weekly",
+					"Last30Days",
+					"CalendarMonth",
+					"Last90Days",
+					"CalendarYear",
+					"Last365Days",
+					"Segment"],
+					"type": "string"
+				},
+				"totalDistance": {
+					"format": "int64",
+					"description": "The total distance during the period.\r\n            If this is a time-based summary, e.g. hourly or daily, then this is the total distance of the period.\r\n            If this is an activity split summary, e.g. splits of a run, then this is the split distance, e.g. 1 mile, 1 kilometer.\r\n            For the last split of the activity, this value may be less than the full split distance.",
+					"type": "integer"
+				},
+				"totalDistanceOnFoot": {
+					"format": "int64",
+					"description": "The total distance covered on foot during the period",
+					"type": "integer"
+				},
+				"actualDistance": {
+					"format": "int64",
+					"description": "The absolute distance including any paused time distance during the period",
+					"type": "integer"
+				},
+				"elevationGain": {
+					"format": "int32",
+					"description": "The cumulative elevation gain accrued during the period in cm",
+					"type": "integer"
+				},
+				"elevationLoss": {
+					"format": "int32",
+					"description": "The cumulative elevation loss accrued during this period in cm",
+					"type": "integer"
+				},
+				"maxElevation": {
+					"format": "int32",
+					"description": "The maximum elevation during this period in cm",
+					"type": "integer"
+				},
+				"minElevation": {
+					"format": "int32",
+					"description": "The minimum elevation during this period in cm",
+					"type": "integer"
+				},
+				"waypointDistance": {
+					"format": "int64",
+					"description": "The distance in cm between recorded GPS points",
+					"type": "integer"
+				},
+				"speed": {
+					"format": "int32",
+					"description": "The average speed during the period",
+					"type": "integer"
+				},
+				"pace": {
+					"format": "int32",
+					"description": "The average pace during the period",
+					"type": "integer"
+				},
+				"overallPace": {
+					"format": "int32",
+					"description": "The total distance to the end of this period divided by total time to the end of this period",
+					"type": "integer"
+				}
+			},
+			"id": "DistanceSummary"
+		},
+		"MapPoint": {
+			"description": "Map Point Summary Data",
+			"type": "object",
+			"properties": {
+				"secondsSinceStart": {
+					"format": "int32",
+					"description": "The number of seconds that have elapsed since mapping began, typically the start of a run or other activity",
+					"type": "integer"
+				},
+				"mapPointType": {
+					"description": "The type of map point",
+					"enum": ["Unknown",
+					"Start",
+					"End",
+					"Split",
+					"Waypoint"],
+					"type": "string"
+				},
+				"ordinal": {
+					"format": "int32",
+					"description": "The absolute ordering of this point relative to the others in its set, starting from 0",
+					"type": "integer"
+				},
+				"actualDistance": {
+					"format": "int64",
+					"description": "The distance not including distance traveled while paused, it is the distance that splits are based off of, since splits ignore paused time",
+					"type": "integer"
+				},
+				"totalDistance": {
+					"format": "int64",
+					"description": "The total distance from the start point to this map point",
+					"type": "integer"
+				},
+				"heartRate": {
+					"format": "int32",
+					"description": "The heart rate at the time of this map point",
+					"type": "integer"
+				},
+				"pace": {
+					"format": "int32",
+					"description": "The pace",
+					"type": "integer"
+				},
+				"scaledPace": {
+					"format": "int32",
+					"description": "A number between 0 and 100 that denotes the pace/speed between the slowest and fastest instantaneous pace for the\r\n            overall route. Slowest segment in the route (highest pace, lowest speed) is 0 and fastest segment\r\n            (lowest pace, highest speed) is 100. Only makes sense in the context of the set of all map points.",
+					"type": "integer"
+				},
+				"speed": {
+					"format": "int32",
+					"description": "The speed",
+					"type": "integer"
+				},
+				"location": {
+					"$ref": "#/definitions/GPSPoint",
+					"description": "The GPS location for this map point"
+				},
+				"isPaused": {
+					"description": "A value indicating whether or not this map point occurred during paused time",
+					"type": "boolean"
+				},
+				"isResume": {
+					"description": "A value indicating whether or not this map point is the first one since the activity resumed",
+					"type": "boolean"
+				}
+			},
+			"id": "MapPoint"
+		},
+		"Summary": {
+			"description": "Summary information over a period of time",
+			"type": "object",
+			"properties": {
+				"userId": {
+					"description": "The unique identifier of the user",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the period",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the period",
+					"type": "string"
+				},
+				"parentDay": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted parent day of the period",
+					"type": "string"
+				},
+				"isTransitDay": {
+					"description": "True if the user transitioned time zones during this period, else false",
+					"type": "boolean"
+				},
+				"period": {
+					"description": "The length of the time bucket for which the summary is calculated",
+					"enum": ["Unknown",
+					"Activity",
+					"Minute",
+					"QuarterHourly",
+					"HalfHourly",
+					"Hourly",
+					"Daily",
+					"Weekly",
+					"Last30Days",
+					"CalendarMonth",
+					"Last90Days",
+					"CalendarYear",
+					"Last365Days",
+					"Segment"],
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the period",
+					"type": "string"
+				},
+				"stepsTaken": {
+					"format": "int32",
+					"description": "The total number of steps taken during the period",
+					"type": "integer"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of the calories burned during the period"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The summary of heart rate data during the period"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of the distance data during the period"
+				},
+				"activeHours": {
+					"format": "int32",
+					"description": "The number of active hours during the period",
+					"type": "integer"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"id": "Summary"
+		},
+		"CaloriesBurnedSummary": {
+			"description": "Calories Burned Summary Information",
+			"type": "object",
+			"properties": {
+				"period": {
+					"description": "The length of the time bucket for which the summary is calculated",
+					"enum": ["Unknown",
+					"Activity",
+					"Minute",
+					"QuarterHourly",
+					"HalfHourly",
+					"Hourly",
+					"Daily",
+					"Weekly",
+					"Last30Days",
+					"CalendarMonth",
+					"Last90Days",
+					"CalendarYear",
+					"Last365Days",
+					"Segment"],
+					"type": "string"
+				},
+				"totalCalories": {
+					"format": "int32",
+					"description": "The total calories burned during the period",
+					"type": "integer"
+				}
+			},
+			"id": "CaloriesBurnedSummary"
+		},
+		"HeartRateSummary": {
+			"description": "Heart rate related summary information",
+			"type": "object",
+			"properties": {
+				"period": {
+					"description": "The length of the time bucket for which the summary is calculated",
+					"enum": ["Unknown",
+					"Activity",
+					"Minute",
+					"QuarterHourly",
+					"HalfHourly",
+					"Hourly",
+					"Daily",
+					"Weekly",
+					"Last30Days",
+					"CalendarMonth",
+					"Last90Days",
+					"CalendarYear",
+					"Last365Days",
+					"Segment"],
+					"type": "string"
+				},
+				"averageHeartRate": {
+					"format": "int32",
+					"description": "The average heart rate achieved during the period",
+					"type": "integer"
+				},
+				"peakHeartRate": {
+					"format": "int32",
+					"description": "The peak heart rate achieved during the period",
+					"type": "integer"
+				},
+				"lowestHeartRate": {
+					"format": "int32",
+					"description": "The lowest heart rate achieved during the period",
+					"type": "integer"
+				}
+			},
+			"id": "HeartRateSummary"
+		},
+		"FreePlaySegment": {
+			"description": "ActivitySegment Class for Workouts",
+			"type": "object",
+			"properties": {
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the segment"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the segment",
+					"type": "string"
+				},
+				"heartRateZones": {
+					"$ref": "#/definitions/HeartRateZones",
+					"description": "The mapping of the amount of time spent in a given heart rate zone during the segment"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the segment",
+					"type": "integer"
+				},
+				"segmentId": {
+					"format": "int64",
+					"description": "The unique identifier of the segment",
+					"type": "integer"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the segment",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the segment",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the segment"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the segment"
+				},
+				"segmentType": {
+					"description": "The segment type",
+					"enum": ["Unknown",
+					"Run",
+					"FreePlay",
+					"Doze",
+					"Sleep",
+					"Snooze",
+					"Awake",
+					"GuidedWorkout",
+					"Bike",
+					"Pause",
+					"Resume",
+					"DistanceBasedInterval",
+					"TimeBasedInterval",
+					"GolfHole",
+					"GolfShot",
+					"NotWorn"],
+					"type": "string"
+				}
+			},
+			"id": "FreePlaySegment"
+		},
+		"GolfHoleSegment": {
+			"description": "ActivitySegment class for Golf Hole",
+			"type": "object",
+			"properties": {
+				"holeNumber": {
+					"format": "int32",
+					"description": "The hole number on the golf course",
+					"type": "integer"
+				},
+				"stepCount": {
+					"format": "int32",
+					"description": "The steps taken by the user for the hole",
+					"type": "integer"
+				},
+				"distanceWalked": {
+					"format": "int32",
+					"description": "The distance walked by the user for the hole",
+					"type": "integer"
+				},
+				"segmentId": {
+					"format": "int64",
+					"description": "The unique identifier of the segment",
+					"type": "integer"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the segment",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the segment",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the segment"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the segment"
+				},
+				"segmentType": {
+					"description": "The segment type",
+					"enum": ["Unknown",
+					"Run",
+					"FreePlay",
+					"Doze",
+					"Sleep",
+					"Snooze",
+					"Awake",
+					"GuidedWorkout",
+					"Bike",
+					"Pause",
+					"Resume",
+					"DistanceBasedInterval",
+					"TimeBasedInterval",
+					"GolfHole",
+					"GolfShot",
+					"NotWorn"],
+					"type": "string"
+				}
+			},
+			"id": "GolfHoleSegment"
+		},
+		"Activity": {
+			"description": "Defines the base activity type",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"activityType": {
+					"description": "The type of the activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"id": "Activity"
+		},
+		"GuidedWorkoutCircuitSegment": {
+			"description": "Guided Workout Circuit Segment record for a Guided Workout",
+			"type": "object",
+			"properties": {
+				"circuitOrdinal": {
+					"format": "int32",
+					"description": "The ordinal of the circuit within the workout",
+					"type": "integer"
+				},
+				"circuitType": {
+					"format": "int32",
+					"description": "The type of the circuit",
+					"type": "integer"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the segment"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the segment",
+					"type": "string"
+				},
+				"heartRateZones": {
+					"$ref": "#/definitions/HeartRateZones",
+					"description": "The mapping of the amount of time spent in a given heart rate zone during the segment"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the segment",
+					"type": "integer"
+				},
+				"segmentId": {
+					"format": "int64",
+					"description": "The unique identifier of the segment",
+					"type": "integer"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the segment",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the segment",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the segment"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the segment"
+				},
+				"segmentType": {
+					"description": "The segment type",
+					"enum": ["Unknown",
+					"Run",
+					"FreePlay",
+					"Doze",
+					"Sleep",
+					"Snooze",
+					"Awake",
+					"GuidedWorkout",
+					"Bike",
+					"Pause",
+					"Resume",
+					"DistanceBasedInterval",
+					"TimeBasedInterval",
+					"GolfHole",
+					"GolfShot",
+					"NotWorn"],
+					"type": "string"
+				}
+			},
+			"id": "GuidedWorkoutCircuitSegment"
+		},
+		"RunSegment": {
+			"description": "ActivitySegment class for Runs",
+			"type": "object",
+			"properties": {
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the segment"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the segment",
+					"type": "string"
+				},
+				"heartRateZones": {
+					"$ref": "#/definitions/HeartRateZones",
+					"description": "The mapping of the amount of time spent in a given heart rate zone during the segment"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the segment",
+					"type": "integer"
+				},
+				"segmentId": {
+					"format": "int64",
+					"description": "The unique identifier of the segment",
+					"type": "integer"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the segment",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the segment",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the segment"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the segment"
+				},
+				"segmentType": {
+					"description": "The segment type",
+					"enum": ["Unknown",
+					"Run",
+					"FreePlay",
+					"Doze",
+					"Sleep",
+					"Snooze",
+					"Awake",
+					"GuidedWorkout",
+					"Bike",
+					"Pause",
+					"Resume",
+					"DistanceBasedInterval",
+					"TimeBasedInterval",
+					"GolfHole",
+					"GolfShot",
+					"NotWorn"],
+					"type": "string"
+				}
+			},
+			"id": "RunSegment"
+		},
+		"SleepSegment": {
+			"description": "ActivitySegment class for Sleeps",
+			"type": "object",
+			"properties": {
+				"sleepTime": {
+					"format": "int32",
+					"description": "The length of time in minutes the user was asleep during the segment",
+					"type": "integer"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of the sleep segment to a logical date. This is the same as the DayId for the sleep activity",
+					"type": "string"
+				},
+				"sleepType": {
+					"description": "The sleep state",
+					"enum": ["Unknown",
+					"UndifferentiatedSleep",
+					"RestlessSleep",
+					"RestfulSleep"],
+					"type": "string"
+				},
+				"segmentId": {
+					"format": "int64",
+					"description": "The unique identifier of the segment",
+					"type": "integer"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the segment",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the segment",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the segment"
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the segment"
+				},
+				"segmentType": {
+					"description": "The segment type",
+					"enum": ["Unknown",
+					"Run",
+					"FreePlay",
+					"Doze",
+					"Sleep",
+					"Snooze",
+					"Awake",
+					"GuidedWorkout",
+					"Bike",
+					"Pause",
+					"Resume",
+					"DistanceBasedInterval",
+					"TimeBasedInterval",
+					"GolfHole",
+					"GolfShot",
+					"NotWorn"],
+					"type": "string"
+				}
+			},
+			"id": "SleepSegment"
+		},
+		"HeartRateZones": {
+			"description": "Distribution of Heart Rates through a range of values defined by Fitness experts \r\n            which determine the effectiveness of the exercise",
+			"type": "object",
+			"properties": {
+				"underHealthyHeart": {
+					"format": "int32",
+					"description": "The number of minutes where the HR was below 50% of the user’s max HR",
+					"type": "integer"
+				},
+				"underAerobic": {
+					"format": "int32",
+					"description": "Note: this field is deprecated. The correct field name is now UnderHealthyHeart. Populated for backwards compatibility until V2\r\n            The number of minutes where the HR was below 50% of the user’s max HR",
+					"type": "integer"
+				},
+				"aerobic": {
+					"format": "int32",
+					"description": "The number of minutes where the HR was between 70-80% of the user’s max HR",
+					"type": "integer"
+				},
+				"anaerobic": {
+					"format": "int32",
+					"description": "The number of minutes where the HR was between 80-90% of the user’s max HR",
+					"type": "integer"
+				},
+				"fitnessZone": {
+					"format": "int32",
+					"description": "The number of minutes where the HR was between 60-70% of the user’s max HR",
+					"type": "integer"
+				},
+				"healthyHeart": {
+					"format": "int32",
+					"description": "The number of minutes where the HR was between 50-60% of the user’s max HR",
+					"type": "integer"
+				},
+				"redline": {
+					"format": "int32",
+					"description": "The number of minutes where the HR was between 90-100% of the user’s max HR",
+					"type": "integer"
+				},
+				"overRedline": {
+					"format": "int32",
+					"description": "The number of minutes above the user’s max HR",
+					"type": "integer"
+				}
+			},
+			"id": "HeartRateZones"
+		},
+		"GPSPoint": {
+			"description": "GPS Point sensor",
+			"type": "object",
+			"properties": {
+				"speedOverGround": {
+					"format": "int32",
+					"description": "The speed over ground for the GPS point in m/s * 100",
+					"type": "integer"
+				},
+				"latitude": {
+					"format": "int32",
+					"description": "The latitude for the GPS point in degrees * 10^7 (+ = North)",
+					"type": "integer"
+				},
+				"longitude": {
+					"format": "int32",
+					"description": "The longitude for the GPS point in degrees * 10^7 (+ = East)",
+					"type": "integer"
+				},
+				"elevationFromMeanSeaLevel": {
+					"format": "int32",
+					"description": "The elevation from mean sea level in m * 100",
+					"type": "integer"
+				},
+				"estimatedHorizontalError": {
+					"format": "int32",
+					"description": "The estimated horizontal error in m * 100",
+					"type": "integer"
+				},
+				"estimatedVerticalError": {
+					"format": "int32",
+					"description": "The estimated vertical error in m * 100",
+					"type": "integer"
+				}
+			},
+			"id": "GPSPoint"
+		},
+		"ErrorResponse": {
+			"type": "object",
+			"properties": {
+				"error": {
+					"$ref": "#/definitions/ErrorInformation"
+				}
+			},
+			"id": "ErrorResponse"
+		},
+		"ErrorInformation": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"message": {
+					"type": "string"
+				},
+				"target": {
+					"type": "string"
+				},
+				"details": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ErrorInformation"
+					}
+				},
+				"innererror": {
+					"$ref": "#/definitions/ErrorInformation"
+				}
+			},
+			"id": "ErrorInformation"
+		},
+		"CompositeActivity": {
+			"description": "Base class for all CompositeActivity Activities",
+			"type": "object",
+			"properties": {
+				"childActivities": {
+					"description": "The list of child activities",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Activity"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"activityType": {
+					"description": "The type of the activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "Activity"
+		},
+		"ExerciseActivity": {
+			"description": "Base class for all Exercise Activities",
+			"type": "object",
+			"properties": {
+				"performanceSummary": {
+					"$ref": "#/definitions/PerformanceSummary",
+					"description": "The performance summary for the activity"
+				},
+				"distanceSummary": {
+					"$ref": "#/definitions/DistanceSummary",
+					"description": "The summary of distance data during the activity"
+				},
+				"pausedDuration": {
+					"description": "The ISO 8601 formatted length of time the user was paused during the activity",
+					"type": "string"
+				},
+				"splitDistance": {
+					"format": "int64",
+					"description": "The split distance used for the activity",
+					"type": "integer"
+				},
+				"mapPoints": {
+					"description": "The map points for the activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MapPoint"
+					}
+				},
+				"id": {
+					"description": "The unique identifier of the activity (unique by user)",
+					"type": "string"
+				},
+				"userId": {
+					"description": "The unique identifier of the user who completed the activity",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The identifier of the device which generated the activity",
+					"type": "string"
+				},
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time of the activity",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time of the activity",
+					"type": "string"
+				},
+				"dayId": {
+					"format": "date-time",
+					"description": "The mapping of an event to a logical date. For most events, other than sleep,\r\n            the default assignment is based on the event's start time. This is subject to change\r\n            in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.",
+					"type": "string"
+				},
+				"createdTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted time the activity was created",
+					"type": "string"
+				},
+				"createdBy": {
+					"description": "The app that created the activity",
+					"type": "string"
+				},
+				"activityType": {
+					"description": "The type of the activity",
+					"enum": ["Unknown",
+					"Custom",
+					"CustomExercise",
+					"CustomComposite",
+					"Run",
+					"Sleep",
+					"FreePlay",
+					"GuidedWorkout",
+					"Bike",
+					"Golf",
+					"RegularExercise"],
+					"type": "string"
+				},
+				"name": {
+					"description": "The name of the activity",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the activity",
+					"type": "string"
+				},
+				"minuteSummaries": {
+					"description": "The summaries associated with this activity",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"caloriesBurnedSummary": {
+					"$ref": "#/definitions/CaloriesBurnedSummary",
+					"description": "The summary of calories burned during the activity"
+				},
+				"heartRateSummary": {
+					"$ref": "#/definitions/HeartRateSummary",
+					"description": "The heart rate summary for the activity"
+				},
+				"uvExposure": {
+					"description": "The UV exposure as time in the sun.",
+					"type": "string"
+				}
+			},
+			"extends": "Activity"
+		},
+		"DeviceProfile": {
+			"description": "The Device Profile Information",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "The unique identifier of the device",
+					"type": "string"
+				},
+				"displayName": {
+					"description": "The name the user has given the device.  (Not available in the Developer Preview)",
+					"type": "string"
+				},
+				"lastSuccessfulSync": {
+					"format": "date-time",
+					"description": "The date the device was last synced with the service.  (Not available in the Developer Preview)",
+					"type": "string"
+				},
+				"deviceFamily": {
+					"description": "The device family",
+					"enum": ["Unknown",
+					"Band",
+					"Windows",
+					"Android",
+					"IOS"],
+					"type": "string"
+				},
+				"hardwareVersion": {
+					"description": "The device version",
+					"type": "string"
+				},
+				"softwareVersion": {
+					"description": "The device's software version",
+					"type": "string"
+				},
+				"modelName": {
+					"description": "The name of the model of the device",
+					"type": "string"
+				},
+				"manufacturer": {
+					"description": "The name of the manufacturer of the device",
+					"type": "string"
+				},
+				"deviceStatus": {
+					"description": "The current status of the device",
+					"enum": ["Unknown",
+					"Active",
+					"Inactive"],
+					"type": "string"
+				},
+				"createdDate": {
+					"format": "date-time",
+					"description": "The date the device was first registered  (Not available in the Developer Preview)",
+					"type": "string"
+				}
+			},
+			"id": "DeviceProfile"
+		},
+		"UserProfile": {
+			"description": "Information about the User",
+			"type": "object",
+			"properties": {
+				"firstName": {
+					"description": "The user's first name",
+					"type": "string"
+				},
+				"middleName": {
+					"description": "The user's middle name",
+					"type": "string"
+				},
+				"lastName": {
+					"description": "The user's last name",
+					"type": "string"
+				},
+				"birthdate": {
+					"format": "date-time",
+					"description": "The user's birth date",
+					"type": "string"
+				},
+				"postalCode": {
+					"description": "The user's postal code",
+					"type": "string"
+				},
+				"gender": {
+					"description": "The user's gender",
+					"type": "string"
+				},
+				"height": {
+					"format": "int32",
+					"description": "The user's current height",
+					"type": "integer"
+				},
+				"weight": {
+					"format": "int32",
+					"description": "The user's current weight",
+					"type": "integer"
+				},
+				"preferredLocale": {
+					"description": "The user's preferred locale",
+					"type": "string"
+				},
+				"lastUpdateTime": {
+					"format": "date-time",
+					"description": "The last update time of the user's profile record",
+					"type": "string"
+				}
+			},
+			"id": "UserProfile"
+		},
+		"SensorsResponse": {
+			"description": "Represents the response for sensor data",
+			"type": "object",
+			"properties": {
+				"startTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted start time",
+					"type": "string"
+				},
+				"endTime": {
+					"format": "date-time",
+					"description": "The ISO 8601 formatted end time",
+					"type": "string"
+				},
+				"deviceId": {
+					"description": "The unique identifier of the device",
+					"type": "string"
+				},
+				"steps": {
+					"description": "The collection of steps sensor data",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/StepSensor"
+					}
+				},
+				"heartRates": {
+					"description": "The collection of heart rates sensor data",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/HeartRateSensor"
+					}
+				},
+				"nextPage": {
+					"description": "The URI for the next page of data",
+					"type": "string"
+				},
+				"itemCount": {
+					"format": "int32",
+					"description": "The number of items returned",
+					"type": "integer"
+				}
+			},
+			"id": "SensorsResponse"
+		},
+		"StepSensor": {
+			"description": "Defines the class for sensors that measure steps.",
+			"type": "object",
+			"properties": {
+				"steps": {
+					"format": "int32",
+					"description": "The Steps reading from a device like a pedometer",
+					"type": "integer"
+				},
+				"timestamp": {
+					"format": "date-time",
+					"description": "The timestamp for the sensor reading",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				}
+			},
+			"id": "StepSensor"
+		},
+		"HeartRateSensor": {
+			"description": "The heart rate sensor data.",
+			"type": "object",
+			"properties": {
+				"heartRate": {
+					"format": "int32",
+					"description": "The heart rate reading",
+					"type": "integer"
+				},
+				"quality": {
+					"format": "int32",
+					"description": "The quality of the heart rate reading",
+					"type": "integer"
+				},
+				"timestamp": {
+					"format": "date-time",
+					"description": "The timestamp for the sensor reading",
+					"type": "string"
+				},
+				"duration": {
+					"description": "The ISO 8601 formatted duration of the segment",
+					"type": "string"
+				}
+			},
+			"id": "HeartRateSensor"
+		},
+		"SummaryResponse": {
+			"description": "The summary response.",
+			"type": "object",
+			"properties": {
+				"summaries": {
+					"description": "The collection of summaries",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Summary"
+					}
+				},
+				"nextPage": {
+					"description": "The URI for the next page of data",
+					"type": "string"
+				},
+				"itemCount": {
+					"format": "int32",
+					"description": "The number of items returned",
+					"type": "integer"
+				}
+			},
+			"id": "SummaryResponse"
+		}
+	}
+}
