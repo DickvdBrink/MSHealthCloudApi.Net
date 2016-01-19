@@ -37,7 +37,9 @@
     <Content Include="api\cloudapi.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="formatter.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\swagger-types.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="api\" />
