@@ -14,6 +14,7 @@ for (const key of keys) {
 
     const definition = cloudApi.definitions[key];
     const classTemlate = `using System;
+using Newtonsoft.Json;
 
 namespace ${namespace}
 {
@@ -22,7 +23,7 @@ namespace ${namespace}
     /// </summary>
     public class ${key}
     {
-        ${createProperties(definition)}
+${createProperties(definition)}
     }
 }`;
     fs.writeFileSync(`../MSHealthCloudApi.Net/Model/${key}.cs`, classTemlate);
@@ -34,13 +35,13 @@ function createProperties(definition: SwaggerSchema) {
     for (const key of keys) {
         const property = definition.properties[key];
         if (property.description) {
-            result += `/// <summary>
+            result += `        /// <summary>
         /// ${formatDescription(property.description, Array(8 + 1).join(" "))}
-        /// </summary>
-        `;
+        /// </summary>\n`;
         }
-        result += `public ${dataTypeToCSharp(property)} ${key} { get; set; }\n`;
-        result += "        ";
+
+        result += `        [JsonPropertyAttribute("${key}")]\n`;
+        result += `        public ${dataTypeToCSharp(property)} ${FormatName(key)} { get; set; }\n`;
     }
     return result;
 }
@@ -83,4 +84,8 @@ function formatDescription(description: string, indent: string) {
         return description.replace(/(\r\n|\n|\r)[ ]*/g, "$1" + indent + "/// ");
     }
     return "";
+}
+
+function FormatName(name: string) {
+    return name.replace(/^./, (str) => str.toUpperCase());
 }
