@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,19 +11,23 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The heart rate when the user finished the exercise
         /// </summary>
-        public int finishHeartRate { get; set; }
+        [JsonPropertyAttribute("finishHeartRate")]
+        public int FinishHeartRate { get; set; }
         /// <summary>
         /// The heart rate one minute after the user finished the exercise
         /// </summary>
-        public int recoveryHeartRateAt1Minute { get; set; }
+        [JsonPropertyAttribute("recoveryHeartRateAt1Minute")]
+        public int RecoveryHeartRateAt1Minute { get; set; }
         /// <summary>
         /// The heart rate two minutes after the user finished the exercise
         /// </summary>
-        public int recoveryHeartRateAt2Minutes { get; set; }
+        [JsonPropertyAttribute("recoveryHeartRateAt2Minutes")]
+        public int RecoveryHeartRateAt2Minutes { get; set; }
         /// <summary>
         /// The breakdown of the heart rate zones during the exercise
         /// </summary>
-        public string heartRateZones { get; set; }
-        
+        [JsonPropertyAttribute("heartRateZones")]
+        public string HeartRateZones { get; set; }
+
     }
 }

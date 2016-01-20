@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,55 +11,68 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The unique identifier of the user
         /// </summary>
-        public string userId { get; set; }
+        [JsonPropertyAttribute("userId")]
+        public string UserId { get; set; }
         /// <summary>
         /// The ISO 8601 formatted start time of the period
         /// </summary>
-        public DateTime startTime { get; set; }
+        [JsonPropertyAttribute("startTime")]
+        public DateTime StartTime { get; set; }
         /// <summary>
         /// The ISO 8601 formatted end time of the period
         /// </summary>
-        public DateTime endTime { get; set; }
+        [JsonPropertyAttribute("endTime")]
+        public DateTime EndTime { get; set; }
         /// <summary>
         /// The ISO 8601 formatted parent day of the period
         /// </summary>
-        public DateTime parentDay { get; set; }
+        [JsonPropertyAttribute("parentDay")]
+        public DateTime ParentDay { get; set; }
         /// <summary>
         /// True if the user transitioned time zones during this period, else false
         /// </summary>
-        public bool isTransitDay { get; set; }
+        [JsonPropertyAttribute("isTransitDay")]
+        public bool IsTransitDay { get; set; }
         /// <summary>
         /// The length of the time bucket for which the summary is calculated
         /// </summary>
-        public string period { get; set; }
+        [JsonPropertyAttribute("period")]
+        public string Period { get; set; }
         /// <summary>
         /// The ISO 8601 formatted duration of the period
         /// </summary>
-        public string duration { get; set; }
+        [JsonPropertyAttribute("duration")]
+        public string Duration { get; set; }
         /// <summary>
         /// The total number of steps taken during the period
         /// </summary>
-        public int stepsTaken { get; set; }
+        [JsonPropertyAttribute("stepsTaken")]
+        public int StepsTaken { get; set; }
         /// <summary>
         /// The summary of the calories burned during the period
         /// </summary>
-        public string caloriesBurnedSummary { get; set; }
+        [JsonPropertyAttribute("caloriesBurnedSummary")]
+        public string CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The summary of heart rate data during the period
         /// </summary>
-        public string heartRateSummary { get; set; }
+        [JsonPropertyAttribute("heartRateSummary")]
+        public string HeartRateSummary { get; set; }
         /// <summary>
         /// The summary of the distance data during the period
         /// </summary>
-        public string distanceSummary { get; set; }
+        [JsonPropertyAttribute("distanceSummary")]
+        public string DistanceSummary { get; set; }
         /// <summary>
         /// The number of active hours during the period
         /// </summary>
-        public int activeHours { get; set; }
+        [JsonPropertyAttribute("activeHours")]
+        public int ActiveHours { get; set; }
         /// <summary>
         /// The UV exposure as time in the sun.
         /// </summary>
-        public string uvExposure { get; set; }
-        
+        [JsonPropertyAttribute("uvExposure")]
+        public string UvExposure { get; set; }
+
     }
 }

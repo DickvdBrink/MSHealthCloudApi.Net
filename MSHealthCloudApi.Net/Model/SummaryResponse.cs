@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,15 +11,18 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The collection of summaries
         /// </summary>
-        public Summary summaries { get; set; }
+        [JsonPropertyAttribute("summaries")]
+        public Summary Summaries { get; set; }
         /// <summary>
         /// The URI for the next page of data
         /// </summary>
-        public string nextPage { get; set; }
+        [JsonPropertyAttribute("nextPage")]
+        public string NextPage { get; set; }
         /// <summary>
         /// The number of items returned
         /// </summary>
-        public int itemCount { get; set; }
-        
+        [JsonPropertyAttribute("itemCount")]
+        public int ItemCount { get; set; }
+
     }
 }

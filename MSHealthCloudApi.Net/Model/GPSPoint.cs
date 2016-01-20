@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,27 +11,33 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The speed over ground for the GPS point in m/s * 100
         /// </summary>
-        public int speedOverGround { get; set; }
+        [JsonPropertyAttribute("speedOverGround")]
+        public int SpeedOverGround { get; set; }
         /// <summary>
         /// The latitude for the GPS point in degrees * 10^7 (+ = North)
         /// </summary>
-        public int latitude { get; set; }
+        [JsonPropertyAttribute("latitude")]
+        public int Latitude { get; set; }
         /// <summary>
         /// The longitude for the GPS point in degrees * 10^7 (+ = East)
         /// </summary>
-        public int longitude { get; set; }
+        [JsonPropertyAttribute("longitude")]
+        public int Longitude { get; set; }
         /// <summary>
         /// The elevation from mean sea level in m * 100
         /// </summary>
-        public int elevationFromMeanSeaLevel { get; set; }
+        [JsonPropertyAttribute("elevationFromMeanSeaLevel")]
+        public int ElevationFromMeanSeaLevel { get; set; }
         /// <summary>
         /// The estimated horizontal error in m * 100
         /// </summary>
-        public int estimatedHorizontalError { get; set; }
+        [JsonPropertyAttribute("estimatedHorizontalError")]
+        public int EstimatedHorizontalError { get; set; }
         /// <summary>
         /// The estimated vertical error in m * 100
         /// </summary>
-        public int estimatedVerticalError { get; set; }
-        
+        [JsonPropertyAttribute("estimatedVerticalError")]
+        public int EstimatedVerticalError { get; set; }
+
     }
 }

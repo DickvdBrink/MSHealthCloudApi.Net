@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,54 +11,66 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The length of the time bucket for which the summary is calculated
         /// </summary>
-        public string period { get; set; }
+        [JsonPropertyAttribute("period")]
+        public string Period { get; set; }
         /// <summary>
         /// The total distance during the period.
         /// If this is a time-based summary, e.g. hourly or daily, then this is the total distance of the period.
         /// If this is an activity split summary, e.g. splits of a run, then this is the split distance, e.g. 1 mile, 1 kilometer.
         /// For the last split of the activity, this value may be less than the full split distance.
         /// </summary>
-        public long totalDistance { get; set; }
+        [JsonPropertyAttribute("totalDistance")]
+        public long TotalDistance { get; set; }
         /// <summary>
         /// The total distance covered on foot during the period
         /// </summary>
-        public long totalDistanceOnFoot { get; set; }
+        [JsonPropertyAttribute("totalDistanceOnFoot")]
+        public long TotalDistanceOnFoot { get; set; }
         /// <summary>
         /// The absolute distance including any paused time distance during the period
         /// </summary>
-        public long actualDistance { get; set; }
+        [JsonPropertyAttribute("actualDistance")]
+        public long ActualDistance { get; set; }
         /// <summary>
         /// The cumulative elevation gain accrued during the period in cm
         /// </summary>
-        public int elevationGain { get; set; }
+        [JsonPropertyAttribute("elevationGain")]
+        public int ElevationGain { get; set; }
         /// <summary>
         /// The cumulative elevation loss accrued during this period in cm
         /// </summary>
-        public int elevationLoss { get; set; }
+        [JsonPropertyAttribute("elevationLoss")]
+        public int ElevationLoss { get; set; }
         /// <summary>
         /// The maximum elevation during this period in cm
         /// </summary>
-        public int maxElevation { get; set; }
+        [JsonPropertyAttribute("maxElevation")]
+        public int MaxElevation { get; set; }
         /// <summary>
         /// The minimum elevation during this period in cm
         /// </summary>
-        public int minElevation { get; set; }
+        [JsonPropertyAttribute("minElevation")]
+        public int MinElevation { get; set; }
         /// <summary>
         /// The distance in cm between recorded GPS points
         /// </summary>
-        public long waypointDistance { get; set; }
+        [JsonPropertyAttribute("waypointDistance")]
+        public long WaypointDistance { get; set; }
         /// <summary>
         /// The average speed during the period
         /// </summary>
-        public int speed { get; set; }
+        [JsonPropertyAttribute("speed")]
+        public int Speed { get; set; }
         /// <summary>
         /// The average pace during the period
         /// </summary>
-        public int pace { get; set; }
+        [JsonPropertyAttribute("pace")]
+        public int Pace { get; set; }
         /// <summary>
         /// The total distance to the end of this period divided by total time to the end of this period
         /// </summary>
-        public int overallPace { get; set; }
-        
+        [JsonPropertyAttribute("overallPace")]
+        public int OverallPace { get; set; }
+
     }
 }

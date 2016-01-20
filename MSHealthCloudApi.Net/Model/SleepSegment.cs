@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,43 +11,53 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The length of time in minutes the user was asleep during the segment
         /// </summary>
-        public int sleepTime { get; set; }
+        [JsonPropertyAttribute("sleepTime")]
+        public int SleepTime { get; set; }
         /// <summary>
         /// The mapping of the sleep segment to a logical date. This is the same as the DayId for the sleep activity
         /// </summary>
-        public DateTime dayId { get; set; }
+        [JsonPropertyAttribute("dayId")]
+        public DateTime DayId { get; set; }
         /// <summary>
         /// The sleep state
         /// </summary>
-        public string sleepType { get; set; }
+        [JsonPropertyAttribute("sleepType")]
+        public string SleepType { get; set; }
         /// <summary>
         /// The unique identifier of the segment
         /// </summary>
-        public long segmentId { get; set; }
+        [JsonPropertyAttribute("segmentId")]
+        public long SegmentId { get; set; }
         /// <summary>
         /// The ISO 8601 formatted start time of the segment
         /// </summary>
-        public DateTime startTime { get; set; }
+        [JsonPropertyAttribute("startTime")]
+        public DateTime StartTime { get; set; }
         /// <summary>
         /// The ISO 8601 formatted end time of the segment
         /// </summary>
-        public DateTime endTime { get; set; }
+        [JsonPropertyAttribute("endTime")]
+        public DateTime EndTime { get; set; }
         /// <summary>
         /// The ISO 8601 formatted duration of the segment
         /// </summary>
-        public string duration { get; set; }
+        [JsonPropertyAttribute("duration")]
+        public string Duration { get; set; }
         /// <summary>
         /// The heart rate summary for the segment
         /// </summary>
-        public string heartRateSummary { get; set; }
+        [JsonPropertyAttribute("heartRateSummary")]
+        public string HeartRateSummary { get; set; }
         /// <summary>
         /// The summary of calories burned during the segment
         /// </summary>
-        public string caloriesBurnedSummary { get; set; }
+        [JsonPropertyAttribute("caloriesBurnedSummary")]
+        public string CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The segment type
         /// </summary>
-        public string segmentType { get; set; }
-        
+        [JsonPropertyAttribute("segmentType")]
+        public string SegmentType { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,19 +11,23 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The length of the time bucket for which the summary is calculated
         /// </summary>
-        public string period { get; set; }
+        [JsonPropertyAttribute("period")]
+        public string Period { get; set; }
         /// <summary>
         /// The average heart rate achieved during the period
         /// </summary>
-        public int averageHeartRate { get; set; }
+        [JsonPropertyAttribute("averageHeartRate")]
+        public int AverageHeartRate { get; set; }
         /// <summary>
         /// The peak heart rate achieved during the period
         /// </summary>
-        public int peakHeartRate { get; set; }
+        [JsonPropertyAttribute("peakHeartRate")]
+        public int PeakHeartRate { get; set; }
         /// <summary>
         /// The lowest heart rate achieved during the period
         /// </summary>
-        public int lowestHeartRate { get; set; }
-        
+        [JsonPropertyAttribute("lowestHeartRate")]
+        public int LowestHeartRate { get; set; }
+
     }
 }

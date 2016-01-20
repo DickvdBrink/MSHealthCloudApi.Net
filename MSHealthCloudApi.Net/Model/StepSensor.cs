@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,15 +11,18 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The Steps reading from a device like a pedometer
         /// </summary>
-        public int steps { get; set; }
+        [JsonPropertyAttribute("steps")]
+        public int Steps { get; set; }
         /// <summary>
         /// The timestamp for the sensor reading
         /// </summary>
-        public DateTime timestamp { get; set; }
+        [JsonPropertyAttribute("timestamp")]
+        public DateTime Timestamp { get; set; }
         /// <summary>
         /// The ISO 8601 formatted duration of the segment
         /// </summary>
-        public string duration { get; set; }
-        
+        [JsonPropertyAttribute("duration")]
+        public string Duration { get; set; }
+
     }
 }

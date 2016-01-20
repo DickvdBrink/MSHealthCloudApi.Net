@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,85 +11,105 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The performance summary for the activity
         /// </summary>
-        public string performanceSummary { get; set; }
+        [JsonPropertyAttribute("performanceSummary")]
+        public string PerformanceSummary { get; set; }
         /// <summary>
         /// The summary of distance data during the activity
         /// </summary>
-        public string distanceSummary { get; set; }
+        [JsonPropertyAttribute("distanceSummary")]
+        public string DistanceSummary { get; set; }
         /// <summary>
         /// The ISO 8601 formatted length of time the user was paused during the activity
         /// </summary>
-        public string pausedDuration { get; set; }
+        [JsonPropertyAttribute("pausedDuration")]
+        public string PausedDuration { get; set; }
         /// <summary>
         /// The split distance used for the activity
         /// </summary>
-        public long splitDistance { get; set; }
+        [JsonPropertyAttribute("splitDistance")]
+        public long SplitDistance { get; set; }
         /// <summary>
         /// The map points for the activity
         /// </summary>
-        public MapPoint mapPoints { get; set; }
+        [JsonPropertyAttribute("mapPoints")]
+        public MapPoint MapPoints { get; set; }
         /// <summary>
         /// The unique identifier of the activity (unique by user)
         /// </summary>
-        public string id { get; set; }
+        [JsonPropertyAttribute("id")]
+        public string Id { get; set; }
         /// <summary>
         /// The unique identifier of the user who completed the activity
         /// </summary>
-        public string userId { get; set; }
+        [JsonPropertyAttribute("userId")]
+        public string UserId { get; set; }
         /// <summary>
         /// The identifier of the device which generated the activity
         /// </summary>
-        public string deviceId { get; set; }
+        [JsonPropertyAttribute("deviceId")]
+        public string DeviceId { get; set; }
         /// <summary>
         /// The ISO 8601 formatted start time of the activity
         /// </summary>
-        public DateTime startTime { get; set; }
+        [JsonPropertyAttribute("startTime")]
+        public DateTime StartTime { get; set; }
         /// <summary>
         /// The ISO 8601 formatted end time of the activity
         /// </summary>
-        public DateTime endTime { get; set; }
+        [JsonPropertyAttribute("endTime")]
+        public DateTime EndTime { get; set; }
         /// <summary>
         /// The mapping of an event to a logical date. For most events, other than sleep,
         /// the default assignment is based on the event's start time. This is subject to change
         /// in the future. For example, if a sleep activity starts before 5 AM, the DayId is the previous day.
         /// </summary>
-        public DateTime dayId { get; set; }
+        [JsonPropertyAttribute("dayId")]
+        public DateTime DayId { get; set; }
         /// <summary>
         /// The ISO 8601 formatted time the activity was created
         /// </summary>
-        public DateTime createdTime { get; set; }
+        [JsonPropertyAttribute("createdTime")]
+        public DateTime CreatedTime { get; set; }
         /// <summary>
         /// The app that created the activity
         /// </summary>
-        public string createdBy { get; set; }
+        [JsonPropertyAttribute("createdBy")]
+        public string CreatedBy { get; set; }
         /// <summary>
         /// The type of the activity
         /// </summary>
-        public string activityType { get; set; }
+        [JsonPropertyAttribute("activityType")]
+        public string ActivityType { get; set; }
         /// <summary>
         /// The name of the activity
         /// </summary>
-        public string name { get; set; }
+        [JsonPropertyAttribute("name")]
+        public string Name { get; set; }
         /// <summary>
         /// The ISO 8601 formatted duration of the activity
         /// </summary>
-        public string duration { get; set; }
+        [JsonPropertyAttribute("duration")]
+        public string Duration { get; set; }
         /// <summary>
         /// The summaries associated with this activity
         /// </summary>
-        public Summary minuteSummaries { get; set; }
+        [JsonPropertyAttribute("minuteSummaries")]
+        public Summary MinuteSummaries { get; set; }
         /// <summary>
         /// The summary of calories burned during the activity
         /// </summary>
-        public string caloriesBurnedSummary { get; set; }
+        [JsonPropertyAttribute("caloriesBurnedSummary")]
+        public string CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The heart rate summary for the activity
         /// </summary>
-        public string heartRateSummary { get; set; }
+        [JsonPropertyAttribute("heartRateSummary")]
+        public string HeartRateSummary { get; set; }
         /// <summary>
         /// The UV exposure as time in the sun.
         /// </summary>
-        public string uvExposure { get; set; }
-        
+        [JsonPropertyAttribute("uvExposure")]
+        public string UvExposure { get; set; }
+
     }
 }

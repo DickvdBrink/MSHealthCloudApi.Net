@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,43 +11,53 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The user's first name
         /// </summary>
-        public string firstName { get; set; }
+        [JsonPropertyAttribute("firstName")]
+        public string FirstName { get; set; }
         /// <summary>
         /// The user's middle name
         /// </summary>
-        public string middleName { get; set; }
+        [JsonPropertyAttribute("middleName")]
+        public string MiddleName { get; set; }
         /// <summary>
         /// The user's last name
         /// </summary>
-        public string lastName { get; set; }
+        [JsonPropertyAttribute("lastName")]
+        public string LastName { get; set; }
         /// <summary>
         /// The user's birth date
         /// </summary>
-        public DateTime birthdate { get; set; }
+        [JsonPropertyAttribute("birthdate")]
+        public DateTime Birthdate { get; set; }
         /// <summary>
         /// The user's postal code
         /// </summary>
-        public string postalCode { get; set; }
+        [JsonPropertyAttribute("postalCode")]
+        public string PostalCode { get; set; }
         /// <summary>
         /// The user's gender
         /// </summary>
-        public string gender { get; set; }
+        [JsonPropertyAttribute("gender")]
+        public string Gender { get; set; }
         /// <summary>
         /// The user's current height
         /// </summary>
-        public int height { get; set; }
+        [JsonPropertyAttribute("height")]
+        public int Height { get; set; }
         /// <summary>
         /// The user's current weight
         /// </summary>
-        public int weight { get; set; }
+        [JsonPropertyAttribute("weight")]
+        public int Weight { get; set; }
         /// <summary>
         /// The user's preferred locale
         /// </summary>
-        public string preferredLocale { get; set; }
+        [JsonPropertyAttribute("preferredLocale")]
+        public string PreferredLocale { get; set; }
         /// <summary>
         /// The last update time of the user's profile record
         /// </summary>
-        public DateTime lastUpdateTime { get; set; }
-        
+        [JsonPropertyAttribute("lastUpdateTime")]
+        public DateTime LastUpdateTime { get; set; }
+
     }
 }

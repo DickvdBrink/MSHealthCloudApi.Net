@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -7,7 +8,8 @@ namespace MSHealthCloudApi.Net.Model
     /// </summary>
     public class ErrorResponse
     {
-        public string error { get; set; }
-        
+        [JsonPropertyAttribute("error")]
+        public string Error { get; set; }
+
     }
 }

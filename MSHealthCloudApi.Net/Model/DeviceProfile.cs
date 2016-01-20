@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,43 +11,53 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The unique identifier of the device
         /// </summary>
-        public string id { get; set; }
+        [JsonPropertyAttribute("id")]
+        public string Id { get; set; }
         /// <summary>
         /// The name the user has given the device.  (Not available in the Developer Preview)
         /// </summary>
-        public string displayName { get; set; }
+        [JsonPropertyAttribute("displayName")]
+        public string DisplayName { get; set; }
         /// <summary>
         /// The date the device was last synced with the service.  (Not available in the Developer Preview)
         /// </summary>
-        public DateTime lastSuccessfulSync { get; set; }
+        [JsonPropertyAttribute("lastSuccessfulSync")]
+        public DateTime LastSuccessfulSync { get; set; }
         /// <summary>
         /// The device family
         /// </summary>
-        public string deviceFamily { get; set; }
+        [JsonPropertyAttribute("deviceFamily")]
+        public string DeviceFamily { get; set; }
         /// <summary>
         /// The device version
         /// </summary>
-        public string hardwareVersion { get; set; }
+        [JsonPropertyAttribute("hardwareVersion")]
+        public string HardwareVersion { get; set; }
         /// <summary>
         /// The device's software version
         /// </summary>
-        public string softwareVersion { get; set; }
+        [JsonPropertyAttribute("softwareVersion")]
+        public string SoftwareVersion { get; set; }
         /// <summary>
         /// The name of the model of the device
         /// </summary>
-        public string modelName { get; set; }
+        [JsonPropertyAttribute("modelName")]
+        public string ModelName { get; set; }
         /// <summary>
         /// The name of the manufacturer of the device
         /// </summary>
-        public string manufacturer { get; set; }
+        [JsonPropertyAttribute("manufacturer")]
+        public string Manufacturer { get; set; }
         /// <summary>
         /// The current status of the device
         /// </summary>
-        public string deviceStatus { get; set; }
+        [JsonPropertyAttribute("deviceStatus")]
+        public string DeviceStatus { get; set; }
         /// <summary>
         /// The date the device was first registered  (Not available in the Developer Preview)
         /// </summary>
-        public DateTime createdDate { get; set; }
-        
+        [JsonPropertyAttribute("createdDate")]
+        public DateTime CreatedDate { get; set; }
+
     }
 }

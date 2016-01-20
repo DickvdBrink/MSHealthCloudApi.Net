@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -11,36 +12,44 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The number of minutes where the HR was below 50% of the user’s max HR
         /// </summary>
-        public int underHealthyHeart { get; set; }
+        [JsonPropertyAttribute("underHealthyHeart")]
+        public int UnderHealthyHeart { get; set; }
         /// <summary>
         /// Note: this field is deprecated. The correct field name is now UnderHealthyHeart. Populated for backwards compatibility until V2
         /// The number of minutes where the HR was below 50% of the user’s max HR
         /// </summary>
-        public int underAerobic { get; set; }
+        [JsonPropertyAttribute("underAerobic")]
+        public int UnderAerobic { get; set; }
         /// <summary>
         /// The number of minutes where the HR was between 70-80% of the user’s max HR
         /// </summary>
-        public int aerobic { get; set; }
+        [JsonPropertyAttribute("aerobic")]
+        public int Aerobic { get; set; }
         /// <summary>
         /// The number of minutes where the HR was between 80-90% of the user’s max HR
         /// </summary>
-        public int anaerobic { get; set; }
+        [JsonPropertyAttribute("anaerobic")]
+        public int Anaerobic { get; set; }
         /// <summary>
         /// The number of minutes where the HR was between 60-70% of the user’s max HR
         /// </summary>
-        public int fitnessZone { get; set; }
+        [JsonPropertyAttribute("fitnessZone")]
+        public int FitnessZone { get; set; }
         /// <summary>
         /// The number of minutes where the HR was between 50-60% of the user’s max HR
         /// </summary>
-        public int healthyHeart { get; set; }
+        [JsonPropertyAttribute("healthyHeart")]
+        public int HealthyHeart { get; set; }
         /// <summary>
         /// The number of minutes where the HR was between 90-100% of the user’s max HR
         /// </summary>
-        public int redline { get; set; }
+        [JsonPropertyAttribute("redline")]
+        public int Redline { get; set; }
         /// <summary>
         /// The number of minutes above the user’s max HR
         /// </summary>
-        public int overRedline { get; set; }
-        
+        [JsonPropertyAttribute("overRedline")]
+        public int OverRedline { get; set; }
+
     }
 }

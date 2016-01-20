@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace MSHealthCloudApi.Net.Model
 {
@@ -10,35 +11,43 @@ namespace MSHealthCloudApi.Net.Model
         /// <summary>
         /// The collection of bike activities
         /// </summary>
-        public BikeActivity bikeActivities { get; set; }
+        [JsonPropertyAttribute("bikeActivities")]
+        public BikeActivity BikeActivities { get; set; }
         /// <summary>
         /// The collection of free play activities
         /// </summary>
-        public FreePlayActivity freePlayActivities { get; set; }
+        [JsonPropertyAttribute("freePlayActivities")]
+        public FreePlayActivity FreePlayActivities { get; set; }
         /// <summary>
         /// The collection of golf activities
         /// </summary>
-        public GolfActivity golfActivities { get; set; }
+        [JsonPropertyAttribute("golfActivities")]
+        public GolfActivity GolfActivities { get; set; }
         /// <summary>
         /// The collection of guided workout activities
         /// </summary>
-        public GuidedWorkoutActivity guidedWorkoutActivities { get; set; }
+        [JsonPropertyAttribute("guidedWorkoutActivities")]
+        public GuidedWorkoutActivity GuidedWorkoutActivities { get; set; }
         /// <summary>
         /// The collection of run activities
         /// </summary>
-        public RunActivity runActivities { get; set; }
+        [JsonPropertyAttribute("runActivities")]
+        public RunActivity RunActivities { get; set; }
         /// <summary>
         /// The collection of sleep activities
         /// </summary>
-        public SleepActivity sleepActivities { get; set; }
+        [JsonPropertyAttribute("sleepActivities")]
+        public SleepActivity SleepActivities { get; set; }
         /// <summary>
         /// The URI for the next page of data
         /// </summary>
-        public string nextPage { get; set; }
+        [JsonPropertyAttribute("nextPage")]
+        public string NextPage { get; set; }
         /// <summary>
         /// The number of items returned
         /// </summary>
-        public int itemCount { get; set; }
-        
+        [JsonPropertyAttribute("itemCount")]
+        public int ItemCount { get; set; }
+
     }
 }
