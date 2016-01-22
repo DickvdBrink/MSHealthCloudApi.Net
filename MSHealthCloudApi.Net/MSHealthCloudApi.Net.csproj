@@ -71,11 +71,13 @@
     <Compile Include="Model\HeartRateZones.cs" />
     <Compile Include="Model\MapPoint.cs" />
     <Compile Include="Model\PerformanceSummary.cs" />
+    <Compile Include="Model\Period.cs" />
     <Compile Include="Model\RunActivity.cs" />
     <Compile Include="Model\RunSegment.cs" />
     <Compile Include="Model\SensorsResponse.cs" />
     <Compile Include="Model\SleepActivity.cs" />
     <Compile Include="Model\SleepSegment.cs" />
+    <Compile Include="Model\SplitDistanceType.cs" />
     <Compile Include="Model\StepSensor.cs" />
     <Compile Include="Model\Summary.cs" />
     <Compile Include="Model\SummaryResponse.cs" />
