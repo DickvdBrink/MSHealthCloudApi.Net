@@ -13,7 +13,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The length of the time bucket for which the summary is calculated
         /// </summary>
         [JsonPropertyAttribute("period")]
-        public string Period { get; set; }
+        public Period Period { get; set; }
         /// <summary>
         /// The total calories burned during the period
         /// </summary>

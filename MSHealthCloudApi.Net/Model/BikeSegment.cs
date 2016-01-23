@@ -63,7 +63,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The segment type
         /// </summary>
         [JsonPropertyAttribute("segmentType")]
-        public string SegmentType { get; set; }
+        public SegmentType SegmentType { get; set; }
 
     }
 }

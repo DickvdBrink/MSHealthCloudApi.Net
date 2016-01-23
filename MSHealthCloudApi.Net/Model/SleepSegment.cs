@@ -23,7 +23,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The sleep state
         /// </summary>
         [JsonPropertyAttribute("sleepType")]
-        public string SleepType { get; set; }
+        public SleepType SleepType { get; set; }
         /// <summary>
         /// The unique identifier of the segment
         /// </summary>
@@ -58,7 +58,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The segment type
         /// </summary>
         [JsonPropertyAttribute("segmentType")]
-        public string SegmentType { get; set; }
+        public SegmentType SegmentType { get; set; }
 
     }
 }

@@ -18,7 +18,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The type of map point
         /// </summary>
         [JsonPropertyAttribute("mapPointType")]
-        public string MapPointType { get; set; }
+        public MapPointType MapPointType { get; set; }
         /// <summary>
         /// The absolute ordering of this point relative to the others in its set, starting from 0
         /// </summary>

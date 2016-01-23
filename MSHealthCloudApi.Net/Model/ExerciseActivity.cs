@@ -80,7 +80,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The type of the activity
         /// </summary>
         [JsonPropertyAttribute("activityType")]
-        public string ActivityType { get; set; }
+        public ActivityType ActivityType { get; set; }
         /// <summary>
         /// The name of the activity
         /// </summary>

@@ -28,7 +28,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The device family
         /// </summary>
         [JsonPropertyAttribute("deviceFamily")]
-        public string DeviceFamily { get; set; }
+        public DeviceFamily DeviceFamily { get; set; }
         /// <summary>
         /// The device version
         /// </summary>
@@ -53,7 +53,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The current status of the device
         /// </summary>
         [JsonPropertyAttribute("deviceStatus")]
-        public string DeviceStatus { get; set; }
+        public DeviceStatus DeviceStatus { get; set; }
         /// <summary>
         /// The date the device was first registered  (Not available in the Developer Preview)
         /// </summary>
