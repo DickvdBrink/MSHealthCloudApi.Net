@@ -12,7 +12,7 @@ namespace MSHealthCloudApi.Net
 {
     public class MSHealthCloudApi
     {
-        private const string Scopes = "mshealth.ReadDevices mshealth.ReadActivityHistory mshealth.ReadActivityLocation";
+        private const string Scopes = "mshealth.ReadProfile mshealth.ReadDevices mshealth.ReadActivityHistory mshealth.ReadActivityLocation";
         private const string BaseHealthUri = "https://api.microsofthealth.net";
 
         private RestClient client;
