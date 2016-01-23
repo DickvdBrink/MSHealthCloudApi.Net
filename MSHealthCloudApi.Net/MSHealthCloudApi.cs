@@ -24,9 +24,80 @@ namespace MSHealthCloudApi.Net
 
         #region Activities
 
-        public ActivitiesResponse GetActivities()
+        public ActivitiesResponse GetActivities(string activityIds = null, string activityTypes = null, string activityIncludes = null,
+            string deviceIds = null, DateTime? startTime = null, DateTime? endTime = null, SplitDistanceType? splitDistanceType = null, int? maxPageSize = null)
         {
-            return performRequest<ActivitiesResponse>("/v1/me/Activities");
+            RestRequest request = prepareGetActivitiesRequest(activityIds, activityTypes, activityIncludes, deviceIds, startTime, endTime, splitDistanceType, maxPageSize);
+            return performRequest<ActivitiesResponse>(request);
+        }
+
+        public Task<ActivitiesResponse> GetActivitiesAsync(string activityIds = null, string activityTypes = null, string activityIncludes = null,
+            string deviceIds = null, DateTime? startTime = null, DateTime? endTime = null, SplitDistanceType? splitDistanceType = null, int? maxPageSize = null)
+        {
+            RestRequest request = prepareGetActivitiesRequest(activityIds, activityTypes, activityIncludes, deviceIds, startTime, endTime, splitDistanceType, maxPageSize);
+            return performRequestAsync<ActivitiesResponse>(request);
+        }
+
+        private RestRequest prepareGetActivitiesRequest(string activityIds = null, string activityTypes = null, string activityIncludes = null,
+            string deviceIds = null, DateTime? startTime = null, DateTime? endTime = null, SplitDistanceType? splitDistanceType = null, int? maxPageSize = null)
+        {
+            RestRequest request = createRequest("/v1/me/Activities");
+            if (activityIds != null)
+            {
+                request.AddQueryParameter("activityIds", activityIds);
+            }
+            if (activityTypes != null)
+            {
+                request.AddQueryParameter("activityTypes", activityTypes);
+            }
+            if (activityIncludes != null)
+            {
+                request.AddQueryParameter("activityIncludes", activityIncludes);
+            }
+            if (deviceIds != null)
+            {
+                request.AddQueryParameter("deviceIds", deviceIds);
+            }
+            if (startTime.HasValue)
+            {
+                request.AddQueryParameter("startTime", startTime.ToString());
+            }
+            if (endTime.HasValue)
+            {
+                request.AddQueryParameter("endTime", endTime.ToString());
+            }
+            if (splitDistanceType.HasValue)
+            {
+                request.AddQueryParameter("splitDistanceType", splitDistanceType.ToString());
+            }
+            if (maxPageSize.HasValue)
+            {
+                request.AddQueryParameter("maxPageSize", maxPageSize.ToString());
+            }
+            return request;
+        }
+
+        public Activity GetActivity(string activityId, string activityIncludes = null)
+        {
+            RestRequest request = prepareGetActivityRequest(activityId, activityIncludes);
+            return performRequest<Activity>(request);
+        }
+
+        public Task<Activity> GetActivityAsync(string activityId = null, string activityIncludes = null)
+        {
+            RestRequest request = prepareGetActivityRequest(activityId, activityIncludes);
+            return performRequestAsync<Activity>(request);
+        }
+
+        private RestRequest prepareGetActivityRequest(string activityId = null, string activityIncludes = null)
+        {
+            RestRequest request = createRequest("/v1/me/Activities/{activityId}");
+            request.AddUrlSegment("activityId", activityId);
+            if (activityIncludes != null)
+            {
+                request.AddQueryParameter("activityIncludes", activityIncludes);
+            }
+            return request;
         }
 
         #endregion
@@ -74,6 +145,42 @@ namespace MSHealthCloudApi.Net
         #endregion
 
         #region Summaries
+
+        public SummaryResponse GetSummaries(Period period, DateTime? startTime = null, DateTime? endTime = null, string deviceIds = null, int? maxPageSize = null)
+        {
+            RestRequest request = prepareGetSummariesRequest(period, startTime, endTime, deviceIds, maxPageSize);
+            return performRequest<SummaryResponse>(request);
+        }
+
+        public Task<SummaryResponse> GetSummariesAsync(Period period, DateTime? startTime = null, DateTime? endTime = null, string deviceIds = null, int? maxPageSize = null)
+        {
+            RestRequest request = prepareGetSummariesRequest(period, startTime, endTime, deviceIds, maxPageSize);
+            return performRequestAsync<SummaryResponse>(request);
+        }
+
+        private RestRequest prepareGetSummariesRequest(Period period, DateTime? startTime = null, DateTime? endTime = null, string deviceIds = null, int? maxPageSize = null)
+        {
+            RestRequest request = createRequest("/v1/me/Summaries/{period}");
+            request.AddUrlSegment("period", period.ToString());
+
+            if (startTime.HasValue)
+            {
+                request.AddQueryParameter("startTime", startTime.ToString());
+            }
+            if (endTime.HasValue)
+            {
+                request.AddQueryParameter("endTime", endTime.ToString());
+            }
+            if (deviceIds != null)
+            {
+                request.AddQueryParameter("deviceIds", deviceIds);
+            }
+            if (maxPageSize.HasValue)
+            {
+                request.AddQueryParameter("maxPageSize", maxPageSize.ToString());
+            }
+            return request;
+        }
 
         #endregion
 
