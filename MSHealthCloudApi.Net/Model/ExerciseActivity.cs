@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Base class for all Exercise Activities
     /// </summary>
-    public class ExerciseActivity
+    public class ExerciseActivity: IActivity
     {
         /// <summary>
         /// The performance summary for the activity

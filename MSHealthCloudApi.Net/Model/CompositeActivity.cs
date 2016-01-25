@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Base class for all CompositeActivity Activities
     /// </summary>
-    public class CompositeActivity
+    public class CompositeActivity: IActivity
     {
         /// <summary>
         /// The list of child activities

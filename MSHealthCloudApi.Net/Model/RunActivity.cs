@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Run specific data for a Run activity
     /// </summary>
-    public class RunActivity
+    public class RunActivity: IActivity
     {
         /// <summary>
         /// The type of this activity

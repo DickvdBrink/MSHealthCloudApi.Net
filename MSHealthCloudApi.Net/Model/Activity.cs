@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Defines the base activity type
     /// </summary>
-    public class Activity
+    public class Activity: IActivity
     {
         /// <summary>
         /// The unique identifier of the activity (unique by user)

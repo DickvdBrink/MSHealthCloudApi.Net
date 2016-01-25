@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Guided Workout Exercise specific data for a Guided  Exercise activity
     /// </summary>
-    public class GuidedWorkoutActivity
+    public class GuidedWorkoutActivity: IActivity
     {
         /// <summary>
         /// The type of this activity

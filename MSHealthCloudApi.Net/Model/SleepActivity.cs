@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Sleep specific data for a sleep activity
     /// </summary>
-    public class SleepActivity
+    public class SleepActivity: IActivity
     {
         /// <summary>
         /// The type of this activity

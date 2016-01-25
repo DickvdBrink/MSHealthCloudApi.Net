@@ -72,6 +72,7 @@
     <Compile Include="Model\HeartRateSensor.cs" />
     <Compile Include="Model\HeartRateSummary.cs" />
     <Compile Include="Model\HeartRateZones.cs" />
+    <Compile Include="Model\IActivity.cs" />
     <Compile Include="Model\MapPoint.cs" />
     <Compile Include="Model\MapPointType.cs" />
     <Compile Include="Model\PerformanceSummary.cs" />

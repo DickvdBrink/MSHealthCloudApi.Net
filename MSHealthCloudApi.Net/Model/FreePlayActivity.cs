@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Free Play specific data for a Free Play activity
     /// </summary>
-    public class FreePlayActivity
+    public class FreePlayActivity: IActivity
     {
         /// <summary>
         /// The type of this activity

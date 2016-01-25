@@ -8,7 +8,7 @@ namespace MSHealthCloudApi.Net.Model
     /// <summary>
     /// Bike specific data for a biking activity
     /// </summary>
-    public class BikeActivity
+    public class BikeActivity: IActivity
     {
         /// <summary>
         /// The type of this activity
