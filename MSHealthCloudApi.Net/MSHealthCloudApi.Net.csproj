@@ -88,7 +88,7 @@
     <Compile Include="Model\Summary.cs" />
     <Compile Include="Model\SummaryResponse.cs" />
     <Compile Include="Model\UserProfile.cs" />
-    <Compile Include="MSHealthCloudApi.cs" />
+    <Compile Include="MSHealthCloudApiClient.cs" />
     <Compile Include="Deserializer\JsonNetDeserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serializers\JsonNetSerializer.cs" />

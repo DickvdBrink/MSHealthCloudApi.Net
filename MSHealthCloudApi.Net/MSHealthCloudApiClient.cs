@@ -10,15 +10,19 @@ using System.Threading.Tasks;
 
 namespace MSHealthCloudApi.Net
 {
-    public class MSHealthCloudApi
+    public class MSHealthCloudApiClient
     {
         private const string Scopes = "mshealth.ReadProfile mshealth.ReadDevices mshealth.ReadActivityHistory mshealth.ReadActivityLocation";
         private const string BaseHealthUri = "https://api.microsofthealth.net";
 
+        private string token;
+
         private RestClient client;
-        public MSHealthCloudApi()
+        public MSHealthCloudApiClient(string token)
         {
+            this.token = token;
             client = new RestClient(BaseHealthUri);
+            client.ClearHandlers();
             client.AddHandler("*", new JsonNetDeserializer());
         }
 
@@ -189,7 +193,7 @@ namespace MSHealthCloudApi.Net
         private RestRequest createRequest(string resource)
         {
             RestRequest request = new RestRequest(resource);
-            request.AddHeader("Authorization", $"bearer { null }");
+            request.AddHeader("Authorization", $"bearer { this.token }");
             request.JsonSerializer = new JsonNetSerializer();
             return request;
         }
