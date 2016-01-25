@@ -76,12 +76,12 @@ namespace MSHealthCloudApi.Net.Model
         /// The summary of calories burned during the activity
         /// </summary>
         [JsonPropertyAttribute("caloriesBurnedSummary")]
-        public string CaloriesBurnedSummary { get; set; }
+        public CaloriesBurnedSummary CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The heart rate summary for the activity
         /// </summary>
         [JsonPropertyAttribute("heartRateSummary")]
-        public string HeartRateSummary { get; set; }
+        public HeartRateSummary HeartRateSummary { get; set; }
         /// <summary>
         /// The UV exposure as time in the sun.
         /// </summary>

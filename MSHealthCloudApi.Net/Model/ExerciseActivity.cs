@@ -14,12 +14,12 @@ namespace MSHealthCloudApi.Net.Model
         /// The performance summary for the activity
         /// </summary>
         [JsonPropertyAttribute("performanceSummary")]
-        public string PerformanceSummary { get; set; }
+        public PerformanceSummary PerformanceSummary { get; set; }
         /// <summary>
         /// The summary of distance data during the activity
         /// </summary>
         [JsonPropertyAttribute("distanceSummary")]
-        public string DistanceSummary { get; set; }
+        public DistanceSummary DistanceSummary { get; set; }
         /// <summary>
         /// The ISO 8601 formatted length of time the user was paused during the activity
         /// </summary>
@@ -101,12 +101,12 @@ namespace MSHealthCloudApi.Net.Model
         /// The summary of calories burned during the activity
         /// </summary>
         [JsonPropertyAttribute("caloriesBurnedSummary")]
-        public string CaloriesBurnedSummary { get; set; }
+        public CaloriesBurnedSummary CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The heart rate summary for the activity
         /// </summary>
         [JsonPropertyAttribute("heartRateSummary")]
-        public string HeartRateSummary { get; set; }
+        public HeartRateSummary HeartRateSummary { get; set; }
         /// <summary>
         /// The UV exposure as time in the sun.
         /// </summary>

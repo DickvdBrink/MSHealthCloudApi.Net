@@ -61,7 +61,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The GPS location for this map point
         /// </summary>
         [JsonPropertyAttribute("location")]
-        public string Location { get; set; }
+        public GPSPoint Location { get; set; }
         /// <summary>
         /// A value indicating whether or not this map point occurred during paused time
         /// </summary>

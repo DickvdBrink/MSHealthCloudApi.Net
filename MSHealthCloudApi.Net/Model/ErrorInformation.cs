@@ -19,7 +19,7 @@ namespace MSHealthCloudApi.Net.Model
         [JsonPropertyAttribute("details")]
         public List<ErrorInformation> Details { get; set; }
         [JsonPropertyAttribute("innererror")]
-        public string Innererror { get; set; }
+        public ErrorInformation Innererror { get; set; }
 
     }
 }

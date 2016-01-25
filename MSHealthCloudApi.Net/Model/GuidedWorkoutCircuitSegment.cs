@@ -24,7 +24,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The summary of distance data during the segment
         /// </summary>
         [JsonPropertyAttribute("distanceSummary")]
-        public string DistanceSummary { get; set; }
+        public DistanceSummary DistanceSummary { get; set; }
         /// <summary>
         /// The ISO 8601 formatted length of time the user was paused during the segment
         /// </summary>
@@ -34,7 +34,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The mapping of the amount of time spent in a given heart rate zone during the segment
         /// </summary>
         [JsonPropertyAttribute("heartRateZones")]
-        public string HeartRateZones { get; set; }
+        public HeartRateZones HeartRateZones { get; set; }
         /// <summary>
         /// The split distance used for the segment
         /// </summary>
@@ -64,12 +64,12 @@ namespace MSHealthCloudApi.Net.Model
         /// The heart rate summary for the segment
         /// </summary>
         [JsonPropertyAttribute("heartRateSummary")]
-        public string HeartRateSummary { get; set; }
+        public HeartRateSummary HeartRateSummary { get; set; }
         /// <summary>
         /// The summary of calories burned during the segment
         /// </summary>
         [JsonPropertyAttribute("caloriesBurnedSummary")]
-        public string CaloriesBurnedSummary { get; set; }
+        public CaloriesBurnedSummary CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The segment type
         /// </summary>

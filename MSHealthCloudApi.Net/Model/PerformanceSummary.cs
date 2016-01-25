@@ -29,7 +29,7 @@ namespace MSHealthCloudApi.Net.Model
         /// The breakdown of the heart rate zones during the exercise
         /// </summary>
         [JsonPropertyAttribute("heartRateZones")]
-        public string HeartRateZones { get; set; }
+        public HeartRateZones HeartRateZones { get; set; }
 
     }
 }

@@ -49,12 +49,12 @@ namespace MSHealthCloudApi.Net.Model
         /// The heart rate summary for the segment
         /// </summary>
         [JsonPropertyAttribute("heartRateSummary")]
-        public string HeartRateSummary { get; set; }
+        public HeartRateSummary HeartRateSummary { get; set; }
         /// <summary>
         /// The summary of calories burned during the segment
         /// </summary>
         [JsonPropertyAttribute("caloriesBurnedSummary")]
-        public string CaloriesBurnedSummary { get; set; }
+        public CaloriesBurnedSummary CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The segment type
         /// </summary>

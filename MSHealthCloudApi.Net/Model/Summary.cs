@@ -54,17 +54,17 @@ namespace MSHealthCloudApi.Net.Model
         /// The summary of the calories burned during the period
         /// </summary>
         [JsonPropertyAttribute("caloriesBurnedSummary")]
-        public string CaloriesBurnedSummary { get; set; }
+        public CaloriesBurnedSummary CaloriesBurnedSummary { get; set; }
         /// <summary>
         /// The summary of heart rate data during the period
         /// </summary>
         [JsonPropertyAttribute("heartRateSummary")]
-        public string HeartRateSummary { get; set; }
+        public HeartRateSummary HeartRateSummary { get; set; }
         /// <summary>
         /// The summary of the distance data during the period
         /// </summary>
         [JsonPropertyAttribute("distanceSummary")]
-        public string DistanceSummary { get; set; }
+        public DistanceSummary DistanceSummary { get; set; }
         /// <summary>
         /// The number of active hours during the period
         /// </summary>

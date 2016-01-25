@@ -11,7 +11,7 @@ namespace MSHealthCloudApi.Net.Model
     public class ErrorResponse
     {
         [JsonPropertyAttribute("error")]
-        public string Error { get; set; }
+        public ErrorInformation Error { get; set; }
 
     }
 }
