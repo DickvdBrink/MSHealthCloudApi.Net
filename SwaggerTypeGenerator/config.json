@@ -1,0 +1,5 @@
+{
+  "namespace": "MSHealthCloudApi.Net.Model",
+  "input": "api/cloudapi.json",
+  "outputFolder":  "../MSHealthCloudApi.Net/Model/"
+}

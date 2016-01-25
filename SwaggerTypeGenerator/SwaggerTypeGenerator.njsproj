@@ -35,6 +35,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <Content Include="api\cloudapi.json" />
+    <Content Include="config.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="formatter.ts" />
