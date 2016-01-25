@@ -89,10 +89,10 @@ function dataTypeToCSharp(property: SwaggerProperty, key: string) {
         enumTypes[key] = { items: (<any>property).enum };
         return FormatName(key);
     }
-    if (property.type == "array") {
-        const ref = <string>property["items"]["$ref"];
+    if (property.type == "array" || property["$ref"]) {
+        const ref = property["$ref"] || <string>property["items"]["$ref"];
         const name = ref.substring(ref.lastIndexOf('/') + 1)
-        return `List<${name}>`;
+        return (property.type == "array" ? `List<${name}>` : name);
     }
     const result = map[property.type];
     if (typeof result === "string") {
