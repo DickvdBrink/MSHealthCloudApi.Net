@@ -25,7 +25,7 @@ namespace ${namespace}
     /// <summary>
     /// ${formatDescription(definition.description, Array(4 + 1).join(" "))}
     /// </summary>
-    public class ${key}
+    public class ${key}${(key.match(/Activity$/) ? ": IActivity" : "")}
     {
 ${createProperties(definition)}
     }
