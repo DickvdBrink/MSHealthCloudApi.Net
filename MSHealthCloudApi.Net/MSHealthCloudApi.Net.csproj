@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityConverter.cs" />
     <Compile Include="Model\ActivitiesResponse.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\ActivityType.cs" />

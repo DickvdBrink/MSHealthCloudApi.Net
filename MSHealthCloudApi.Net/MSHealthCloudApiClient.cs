@@ -81,16 +81,18 @@ namespace MSHealthCloudApi.Net
             return request;
         }
 
-        public Activity GetActivity(string activityId, string activityIncludes = null)
+        public T GetActivity<T>(string activityId, string activityIncludes = null)
+            where T : IActivity, new()
         {
             RestRequest request = prepareGetActivityRequest(activityId, activityIncludes);
-            return performRequest<Activity>(request);
+            return performRequest<T>(request);
         }
 
-        public Task<Activity> GetActivityAsync(string activityId = null, string activityIncludes = null)
+        public Task<T> GetActivityAsync<T>(string activityId = null, string activityIncludes = null)
+            where T : IActivity, new()
         {
             RestRequest request = prepareGetActivityRequest(activityId, activityIncludes);
-            return performRequestAsync<Activity>(request);
+            return performRequestAsync<T>(request);
         }
 
         private RestRequest prepareGetActivityRequest(string activityId = null, string activityIncludes = null)
