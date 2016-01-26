@@ -25,7 +25,7 @@ namespace ${namespace}
     /// <summary>
     /// ${formatDescription(definition.description, Array(4 + 1).join(" "))}
     /// </summary>
-    public class ${key}${(key.match(/Activity$/) ? ": IActivity" : "")}
+    public class ${key}${implementsInterface(key, definition)}
     {
 ${createProperties(definition)}
     }
@@ -64,6 +64,20 @@ function createProperties(definition: SwaggerSchema) {
         result += `        public ${dataTypeToCSharp(property, key)} ${FormatName(key)} { get; set; }\n`;
     }
     return result;
+}
+
+function implementsInterface(key: string, definition: SwaggerSchema) {
+    for (var item in config.interfaces) {
+        var t = config.interfaces[item];
+        if (t.implementors && typeof t.implementors == "object"
+        && t.implementors.regex) {
+            var re = new RegExp(t.implementors.regex);
+            if (re.test(key)) {
+                return `: ${item}`;
+            }
+        }
+    }
+    return "";
 }
 
 function dataTypeToCSharp(property: SwaggerProperty, key: string) {

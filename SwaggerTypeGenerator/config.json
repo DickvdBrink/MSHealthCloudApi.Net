@@ -1,5 +1,16 @@
 {
   "namespace": "MSHealthCloudApi.Net.Model",
   "input": "api/cloudapi.json",
-  "outputFolder":  "../MSHealthCloudApi.Net/Model/"
+  "outputFolder": "../MSHealthCloudApi.Net/Model/",
+  "interfaces": {
+    "IActivity": {
+      "forType": "Activity",
+      "implementors": {
+        "regex": "Activity$"
+      }
+    }
+  },
+  "overrides": {
+
+  }
 }
