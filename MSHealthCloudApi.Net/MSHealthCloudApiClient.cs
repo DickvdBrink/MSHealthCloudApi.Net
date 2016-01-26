@@ -15,12 +15,15 @@ namespace MSHealthCloudApi.Net
         private const string Scopes = "mshealth.ReadProfile mshealth.ReadDevices mshealth.ReadActivityHistory mshealth.ReadActivityLocation";
         private const string BaseHealthUri = "https://api.microsofthealth.net";
 
-        private string token;
+
+        private ITokenProvider tokenProvider;
 
         private RestClient client;
-        public MSHealthCloudApiClient(string token)
+        public MSHealthCloudApiClient(ITokenProvider tokenProvider)
         {
-            this.token = token;
+            if (tokenProvider == null)
+                throw new ArgumentNullException(nameof(tokenProvider));
+            this.tokenProvider = tokenProvider;
             client = new RestClient(BaseHealthUri);
             client.ClearHandlers();
             client.AddHandler("*", new JsonNetDeserializer());
@@ -195,7 +198,7 @@ namespace MSHealthCloudApi.Net
         private RestRequest createRequest(string resource)
         {
             RestRequest request = new RestRequest(resource);
-            request.AddHeader("Authorization", $"bearer { this.token }");
+            request.AddHeader("Authorization", $"bearer { tokenProvider.GetAccessToken() }");
             request.JsonSerializer = new JsonNetSerializer();
             return request;
         }
